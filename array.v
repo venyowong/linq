@@ -12,6 +12,18 @@ pub fn except[T](arr1 []T, arr2 []T) []T {
     return result
 }
 
+pub fn first[T](arr []&T, predicate fn (item T) bool) ?&T {
+	if arr.len == 0 {
+		return none
+	}
+	for item in arr {
+		if predicate(*item) {
+			return unsafe {item}
+		}
+	}
+	return none
+}
+
 pub fn intersect[T](arr1 []T, arr2 []T) []T {
     mut result := []T{}
     for x in arr1 {
