@@ -86,6 +86,16 @@ pub fn order[T](mut arr []T, compare fn(T, T) bool) []T {
     return arr
 }
 
+pub fn to_map[T, U, W](arr []T, key fn(T) U, value fn(T) W) map[U]W {
+    mut m := map[U]W{}
+    for x in arr {
+        k := key(x)
+        v := value(x)
+        m[k] = v
+    }
+    return m
+}
+
 pub fn union[T](arr1 []T, arr2 []T) []T {
     mut result := arr1.clone()
     for x in arr2 {
